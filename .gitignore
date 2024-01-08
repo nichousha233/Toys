@@ -1,0 +1,5 @@
+*.udb
+*.o
+.DS_Store
+.vscode
+a.out
