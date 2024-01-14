@@ -6,7 +6,7 @@
 
 //#define DEBUG
 
-void *malloc_zhang(size_t size, float* pmemory_bytes, float* pmemory_bytes_max, char* filename, unsigned int line_number) {
+void *malloc_zhang(size_t size, double* pmemory_bytes, double* pmemory_bytes_max, char* filename, unsigned int line_number) {
     void* ptr;
     ptr = (void *) malloc(size);
     if (ptr == NULL) {
@@ -16,7 +16,7 @@ void *malloc_zhang(size_t size, float* pmemory_bytes, float* pmemory_bytes_max, 
         abort();
     }
     if (pmemory_bytes != NULL) {
-        *pmemory_bytes += (float) size;
+        *pmemory_bytes += (double) size;
     }
     if (pmemory_bytes_max != NULL) {
         *pmemory_bytes_max = max(*pmemory_bytes_max, *pmemory_bytes);
@@ -24,7 +24,7 @@ void *malloc_zhang(size_t size, float* pmemory_bytes, float* pmemory_bytes_max, 
     return ptr;
 }
 
-void *calloc_zhang(size_t nitems, size_t size, float* pmemory_bytes, float* pmemory_bytes_max, char* filename, unsigned int line_number) {
+void *calloc_zhang(size_t nitems, size_t size, double* pmemory_bytes, double* pmemory_bytes_max, char* filename, unsigned int line_number) {
     void* ptr;
     ptr = (void *) calloc(nitems, size);
     if (ptr == NULL) {
@@ -34,7 +34,7 @@ void *calloc_zhang(size_t nitems, size_t size, float* pmemory_bytes, float* pmem
         abort();
     }
     if (pmemory_bytes != NULL) {
-        *pmemory_bytes += (float) nitems * size;
+        *pmemory_bytes += (double) nitems * size;
     }
     if (pmemory_bytes_max != NULL) {
         *pmemory_bytes_max = max(*pmemory_bytes_max, *pmemory_bytes);
@@ -42,10 +42,10 @@ void *calloc_zhang(size_t nitems, size_t size, float* pmemory_bytes, float* pmem
     return ptr;
 }
 
-void free_zhang(void *ptr, size_t size, float* pmemory_bytes){
+void free_zhang(void *ptr, size_t size, double* pmemory_bytes){
     free(ptr);
     if (pmemory_bytes != NULL) {
-        *pmemory_bytes -= (float) size;
+        *pmemory_bytes -= (double) size;
     }
 }
 
@@ -55,8 +55,8 @@ int main(int argc, char* argv[]) {
     int * ii;
     int N = 3;
 
-    float memory_bytes = 0.0;
-    float memory_bytes_max = 0.0;
+    double memory_bytes = 0.0;
+    double memory_bytes_max = 0.0;
 
     // d = malloc(N*sizeof(*d)); 
     // ii = malloc(N*sizeof(*ii)); 
